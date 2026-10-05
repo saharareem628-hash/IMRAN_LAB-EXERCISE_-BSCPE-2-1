@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Area of Circle</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+    <a href="/" class="logo">
+        <img
+            src="{{ url_for('static', filename='images/profile.jpg') }}"
+            alt="My Profile Picture"
+            class="nav-profile"
+        >
+        <span>My Portfolio</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/works">Works</a>
+        <a href="/contact">Contact</a>
+    </div>
+
+</nav>
+
+    <!-- CIRCLE CALCULATOR -->
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>Area of a Circle</h1>
+
+            <p>
+                Enter the radius of the circle to calculate
+                its area.
+            </p>
+
+            <form method="POST">
+
+                <label for="radius">
+                    Radius
+                </label>
+
+                <input
+                    type="number"
+                    id="radius"
+                    name="radius"
+                    step="any"
+                    min="0"
+                    placeholder="Enter radius"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn">
+
+                    Calculate Area
+
+                </button>
+
+            </form>
+
+
+            <!-- RESULT -->
+
+            {% if result is not none %}
+
+            <div class="result">
+
+                <strong>
+                    Result:
+                </strong>
+
+                The area of the circle is
+                {{ result }}
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- ERROR -->
+
+            {% if error %}
+
+            <div class="error">
+
+                {{ error }}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Programming Works</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+    <a href="/" class="logo">
+        <img
+            src="{{ url_for('static', filename='images/profile.jpg') }}"
+            alt="My Profile Picture"
+            class="nav-profile"
+        >
+        <span>My Portfolio</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/works">Works</a>
+        <a href="/contact">Contact</a>
+    </div>
+
+</nav>
+
+
+    <!-- WORKS -->
+
+    <div class="container">
+
+        <h1>Programming Works</h1>
+
+        <p>
+            Below are some of my programming implementations
+            using Python and Flask.
+        </p>
+
+
+        <div class="card-container">
+
+
+            <!-- CIRCLE -->
+
+            <div class="card">
+    <div class="card work-card">
+    <div class="shape circle-shape">π</div>
+
+    <h2>Area of Circle</h2>
+    <p>Calculate the area of a circle using its radius.</p>
+    <a href="/works/area/circle" class="btn">Open</a>
+</div>
+
+
+            <!-- TRIANGLE -->
+
+            <div class="card">
+
+                <h2>Area of Triangle</h2>
+
+                <p>
+                    Calculate the area of a triangle
+                    using its base and height.
+                </p>
+
+                <a href="/works/area/triangle"
+                   class="btn">
+
+                    Open
+
+                </a>
+
+            </div>
+
+
+            <!-- LINKED LIST -->
+
+            <div class="card">
+
+                <h2>Linked List</h2>
+
+                <p>
+                    Add, delete, search, and display
+                    items in a linked list.
+                </p>
+
+                <a href="/works/linked-list"
+                   class="btn">
+
+                    Open
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Portfolio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+    <img
+        src="{{ url_for('static', filename='images/profile.jpg') }}"
+        alt="My Profile Picture"
+        class="nav-profile"
+    >
+    <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+        
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <p class="hero-tag">
+            WELCOME TO MY PORTFOLIO
+        </p>
+
+        <h1>Hello, 
+            I'm Sahara!</h1>
+
+        <p>
+            I create simple and useful programs using
+            Python, Flask, HTML, JavaScript, and CSS.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/works" class="btn">
+                View My Works
+            </a>
+
+            <a href="/profile" class="btn secondary-btn">
+                About Me
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT I DO -->
+    <div class="container">
+
+        <h1 class="section-title">
+            What I Do?
+        </h1>
+
+        <p class="section-description">
+            Here are some of the technologies and concepts
+            I am currently learning and working with.
+        </p>
+
+
+        <div class="card-container">
+
+            <div class="card">
+
+                <div class="icon">
+                    🐍
+                </div>
+
+                <h2>Python</h2>
+
+                <p>
+                    I use Python to create programs and
+                    practice programming concepts.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🌐
+                </div>
+
+                <h2>Web Development</h2>
+
+                <p>
+                    I build web pages using HTML, CSS,
+                    and Flask.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🔗
+                </div>
+
+                <h2>Data Structures</h2>
+
+                <p>
+                    I practice data structures such as
+                    Linked Lists and their operations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <p>
+            © 2026 My Portfolio
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

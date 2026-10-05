@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Linked List</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <h1>Linked List</h1>
+
+        <p>
+            Perform different operations on the linked list.
+        </p>
+
+
+        <!-- TWO BOXES SIDE-BY-SIDE -->
+        <div class="linked-list-layout">
+
+
+            <!-- LEFT BOX: OPERATIONS -->
+            <div class="form-box linked-operations">
+
+                <h2>Linked List Operations</h2>
+
+                <form method="POST">
+
+                    <label for="value">Value</label>
+
+                    <input
+                        type="text"
+                        id="value"
+                        name="value"
+                        placeholder="Enter a value"
+                    >
+
+
+                    <button
+                        type="submit"
+                        name="action"
+                        value="add_beginning"
+                        class="btn operation-btn">
+                        Add at the Beginning
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        name="action"
+                        value="add"
+                        class="btn operation-btn">
+                        Add
+                    </button>
+
+
+                    <button type="submit" name="action" value="delete" class="btn operation-btn" onclick="return confirmDelete()">Delete</button>
+
+
+                    <button type="submit" name="action" value="search" class="btn operation-btn" onclick="return highlightSearch()">Search</button>
+
+                </form>
+
+
+                {% if message %}
+
+                <div class="result">
+                    {{ message }}
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RIGHT BOX: LINKED LIST DATA -->
+            <div class="form-box linked-data">
+
+                <h2>Linked List Data</h2>
+
+
+                {% if items %}
+
+                <div class="linked-list-display">
+
+                    {% for item in items %}
+
+                    <div class="node">
+                        {{ item }}
+                    </div>
+
+
+                    {% if not loop.last %}
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% else %}
+
+                <p>The linked list is empty.</p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

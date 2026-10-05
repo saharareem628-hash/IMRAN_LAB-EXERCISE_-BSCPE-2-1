@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area of Triangle</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>Area of a Triangle</h1>
+
+            <p>
+                Enter the base and height of the triangle
+                to calculate its area.
+            </p>
+
+            <form method="POST">
+
+                <label for="base">Base</label>
+
+                <input
+                    type="number"
+                    id="base"
+                    name="base"
+                    step="any"
+                    min="0"
+                    placeholder="Enter base"
+                    required
+                >
+
+                <label for="height">Height</label>
+
+                <input
+                    type="number"
+                    id="height"
+                    name="height"
+                    step="any"
+                    min="0"
+                    placeholder="Enter height"
+                    required
+                >
+
+                <button type="submit" class="btn">
+                    Calculate Area
+                </button>
+
+            </form>
+
+            {% if result is not none %}
+            <div class="result">
+                <strong>Result:</strong>
+                The area of the triangle is {{ result }}
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

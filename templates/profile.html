@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                 alt="My Profile Picture"
+                 class="nav-profile">
+
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="container profile-page">
+
+
+        <!-- PROFILE TITLE -->
+        <div class="profile-header">
+
+            <div class="section-label">
+                GET TO KNOW ME
+            </div>
+
+            <h1>My Profile</h1>
+
+            <p class="profile-intro">
+                Computer Engineering student passionate about programming,
+                web development, and technology.
+            </p>
+
+        </div>
+
+
+        <!-- =========================================
+             PHOTO + PERSONAL INFORMATION
+             ========================================= -->
+
+        <section class="profile-main-card">
+
+            <!-- PHOTO -->
+            <div class="profile-photo-box">
+
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                     alt="Sahara Reem M. Imran"
+                     class="profile-photo">
+
+            </div>
+
+
+            <!-- PERSONAL INFORMATION -->
+            <div class="personal-info-box">
+
+                <div class="section-label">
+                    PERSONAL PROFILE
+                </div>
+
+                <h2>Personal Information</h2>
+
+                <div class="personal-info-list">
+
+                    <div class="info-item">
+                        <span class="info-label">Name</span>
+                        <span class="info-value">
+                            Sahara Reem M. Imran
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Course</span>
+                        <span class="info-value">
+                            Bachelor of Science in Computer Engineering
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Year Level</span>
+                        <span class="info-value">
+                            2nd Year
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">School</span>
+                        <span class="info-value">
+                            Polytechnic University of the Philippines - Main Campus
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ABOUT ME + SKILLS + INTERESTS
+             ========================================= -->
+
+        <div class="profile-content-grid">
+
+
+            <!-- ABOUT ME -->
+            <section class="profile-section-card">
+
+                <div class="section-label">
+                    ABOUT ME
+                </div>
+
+                <h2>About Me</h2>
+
+                <p>
+                    I am currently a Computer Engineering student who enjoys
+                    learning programming and web development.
+                </p>
+
+                <p>
+                    I enjoy working with Python, JavaScript, and web
+                    development frameworks while continuously improving
+                    my programming skills.
+                </p>
+
+            </section>
+
+
+            <!-- SKILLS -->
+            <section class="profile-section-card">
+
+                <div class="section-label">
+                    WHAT I CAN DO
+                </div>
+
+                <h2>🛠️ My Skills</h2>
+
+                <div class="skill-list">
+
+                    <span class="skill-tag">Python</span>
+
+                    <span class="skill-tag">
+                        Problem-Solving
+                    </span>
+
+                    <span class="skill-tag">
+                        Critical Thinking
+                    </span>
+
+                    <span class="skill-tag">
+                        Teamwork
+                    </span>
+
+                    <span class="skill-tag">
+                        Time Management
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- INTERESTS -->
+            <section class="profile-section-card">
+
+                <div class="section-label">
+                    WHAT I ENJOY
+                </div>
+
+                <h2>❤️ My Interests</h2>
+
+                <div class="interest-list">
+
+                    <span class="interest-tag">
+                        Web Development
+                    </span>
+
+                    <span class="interest-tag">
+                        Programming
+                    </span>
+
+                    <span class="interest-tag">
+                        Networking
+                    </span>
+
+                    <span class="interest-tag">
+                        Learning New Things
+                    </span>
+
+                    <span class="interest-tag">
+                        Technology
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =========================================
+             CONTACT ME
+             ========================================= -->
+
+        <section class="social-section">
+
+            <div class="section-label">
+                GET IN TOUCH
+            </div>
+
+            <h2>Let's Connect</h2>
+
+            <p class="social-subtitle">
+                Feel free to connect with me through my social media accounts.
+            </p>
+
+
+            <div class="social-links">
+
+
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/sahara.imran.7"
+                   class="social-card"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <span class="social-icon">f</span>
+
+                    <div class="social-content">
+                        <span class="social-name">
+                            Facebook
+                        </span>
+
+                        <span class="social-handle">
+                            sahara.imran.7
+                        </span>
+                    </div>
+
+                    <span class="social-arrow">↗</span>
+
+                </a>
+
+
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/srvxm_/"
+                   class="social-card"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <span class="social-icon">◎</span>
+
+                    <div class="social-content">
+                        <span class="social-name">
+                            Instagram
+                        </span>
+
+                        <span class="social-handle">
+                            @srvxm_
+                        </span>
+                    </div>
+
+                    <span class="social-arrow">↗</span>
+
+                </a>
+
+
+                <!-- TIKTOK -->
+                <a href="https://www.tiktok.com/@srxvrm_"
+                   class="social-card"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <span class="social-icon">♪</span>
+
+                    <div class="social-content">
+                        <span class="social-name">
+                            TikTok
+                        </span>
+
+                        <span class="social-handle">
+                            @srxvrm_
+                        </span>
+                    </div>
+
+                    <span class="social-arrow">↗</span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</body>
+</html>

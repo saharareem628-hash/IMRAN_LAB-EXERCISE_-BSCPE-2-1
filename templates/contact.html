@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Me</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+    <a href="/" class="logo">
+        <img
+            src="{{ url_for('static', filename='images/profile.jpg') }}"
+            alt="My Profile Picture"
+            class="nav-profile"
+        >
+        <span>My Portfolio</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/works">Works</a>
+        <a href="/contact">Contact</a>
+    </div>
+
+</nav>
+
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>Contact Me</h1>
+
+{% if message %}
+<div class="result">
+    {{ message }}
+</div>
+{% endif %}
+
+<p>Feel free to contact me using the information below.</p>
+
+            <div class="card contact-info-card">
+    <h2>📬 My Contact Information</h2>
+
+                <p>
+                    <strong>Name:</strong>
+                    Sahara Reem M. Imran
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    saharareem628@gmail.com
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    09918209687
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    Block 19, Lot 19, Rose Street, Santana Village, Brgy. San Isidro, Antipolo City, Rizal
+                </p>
+
+            </div>
+
+
+            <h2>Send Me a Message</h2>
+
+            <form method="POST">
+
+                <label for="name">Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label for="message">Message</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Enter your message"
+                    rows="6"
+                    required
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="btn">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
