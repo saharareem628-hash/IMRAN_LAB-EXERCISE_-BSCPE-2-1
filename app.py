@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+import re
 app = Flask(__name__)
 
 
@@ -84,6 +84,183 @@ class LinkedList:
 
         return result
 
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        if self.top:
+            new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        if self.top is None:
+            return None
+
+        popped_node = self.top
+        self.top = self.top.next
+        popped_node.next = None
+        return popped_node.data
+
+    def peek(self):
+        if self.top:
+            return self.top.data
+        return None
+
+    def print_stack(self):
+        if self.top is None:
+            print("Stack is empty")
+            return
+
+        current = self.top
+        print("Stack elements (top → bottom):")
+        while current:
+            print(current.data)
+            current = current.next
+
+
+def infix_to_postfix(expression):
+    import re
+
+    tokens = re.findall(
+        r'\d+(?:\.\d+)?|[A-Za-z_]\w*|[()+\-*/^]',
+        expression
+    )
+
+    if "".join(tokens) != re.sub(r"\s+", "", expression):
+        raise ValueError("Invalid character in expression.")
+
+    output = []
+    operators = Stack()
+
+    precedence = {
+        "+": 1,
+        "-": 1,
+        "*": 2,
+        "/": 2,
+        "^": 3
+    }
+
+    for token in tokens:
+        if re.fullmatch(r'\d+(?:\.\d+)?|[A-Za-z_]\w*', token):
+            output.append(token)
+
+        elif token == "(":
+            operators.push(token)
+
+        elif token == ")":
+            while operators.peek() is not None and operators.peek() != "(":
+                output.append(operators.pop())
+
+            if operators.peek() != "(":
+                raise ValueError("Mismatched parentheses.")
+
+            operators.pop()
+
+        elif token in precedence:
+            while operators.peek() in precedence:
+                top_operator = operators.peek()
+
+                higher = precedence[top_operator] > precedence[token]
+                equal = precedence[top_operator] == precedence[token]
+
+                if not higher and not (equal and token != "^"):
+                    break
+
+                output.append(operators.pop())
+
+            operators.push(token)
+
+    while operators.peek() is not None:
+        if operators.peek() in ("(", ")"):
+            raise ValueError("Mismatched parentheses.")
+        output.append(operators.pop())
+
+    return " ".join(output)
+
+
+def infix_to_postfix_steps(expression):
+    import re
+
+    tokens = re.findall(
+        r'\d+(?:\.\d+)?|[A-Za-z_]\w*|[()+\-*/^]',
+        expression
+    )
+
+    if "".join(tokens) != re.sub(r"\s+", "", expression):
+        raise ValueError("Invalid character in expression.")
+
+    output = []
+    operators = Stack()
+    steps = []
+
+    precedence = {
+        "+": 1,
+        "-": 1,
+        "*": 2,
+        "/": 2,
+        "^": 3
+    }
+
+    def record_step(token, action):
+        stack_items = []
+        current = operators.top
+
+        while current:
+            stack_items.append(current.data)
+            current = current.next
+
+        steps.append({
+            "token": token,
+            "action": action,
+            "stack": " ".join(stack_items) if stack_items else "Empty",
+            "output": " ".join(output) if output else "Empty"
+        })
+
+    for token in tokens:
+        if re.fullmatch(r'\d+(?:\.\d+)?|[A-Za-z_]\w*', token):
+            output.append(token)
+            record_step(token, "Add operand to output")
+
+        elif token == "(":
+            operators.push(token)
+            record_step(token, "Push opening parenthesis")
+
+        elif token == ")":
+            while operators.peek() is not None and operators.peek() != "(":
+                output.append(operators.pop())
+
+            if operators.peek() != "(":
+                raise ValueError("Mismatched parentheses.")
+
+            operators.pop()
+            record_step(token, "Pop until opening parenthesis")
+
+        elif token in precedence:
+            while operators.peek() in precedence:
+                top_operator = operators.peek()
+
+                higher = precedence[top_operator] > precedence[token]
+                equal = precedence[top_operator] == precedence[token]
+
+                if not higher and not (equal and token != "^"):
+                    break
+
+                output.append(operators.pop())
+
+            operators.push(token)
+            record_step(token, "Push operator onto stack")
+
+    while operators.peek() is not None:
+        if operators.peek() in ("(", ")"):
+            raise ValueError("Mismatched parentheses.")
+
+        output.append(operators.pop())
+        record_step("End", "Pop remaining operator")
+
+    return " ".join(output), steps
 
 # Create linked list
 linked_list = LinkedList()
@@ -241,6 +418,35 @@ def linkedlist():
         message=message
     )
 
+
+
+@app.route("/works/infix-to-postfix", methods=["GET", "POST"])
+def infix_postfix():
+    result = None
+    error = None
+    expression = ""
+    steps = []
+
+    if request.method == "POST":
+        expression = request.form.get("expression", "").strip()
+
+        if not expression:
+            error = "Please enter an infix expression."
+        else:
+            try:
+                result, steps = infix_to_postfix_steps(expression)
+            except ValueError as e:
+                error = str(e)
+
+    return render_template(
+        "infix_postfix.html",
+        expression=expression,
+        result=result,
+        error=error,
+        steps=steps
+    )
+
+
 # -------------------------
 # Contact
 # -------------------------
@@ -261,3 +467,5 @@ def contact():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+

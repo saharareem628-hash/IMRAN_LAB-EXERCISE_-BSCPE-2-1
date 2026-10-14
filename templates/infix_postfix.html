@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infix to Postfix Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('works') }}">Works</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <!-- INFIX TO POSTFIX CONVERTER -->
+    <main class="container infix-page">
+        <section class="infix-panel">
+
+            <div class="infix-heading">
+                <span class="infix-tag">DATA STRUCTURES & ALGORITHMS</span>
+                <h1>Infix <span>to Postfix</span></h1>
+                <p>
+                    Convert mathematical expressions using a Stack
+                    implemented with a Linked List.
+                </p>
+            </div>
+
+            <form method="POST" class="infix-form">
+                <label for="expression">Your Infix Expression</label>
+
+                <input
+                    type="text"
+                    id="expression"
+                    name="expression"
+                    placeholder="Example: (A + B) * C"
+                    value="{{ expression }}"
+                    required
+                >
+
+                <button type="submit" class="btn">
+                    Convert Expression ↗
+                </button>
+            </form>
+
+            
+{% if result is not none %}
+<section class="infix-result">
+    <span class="infix-tag">CONVERSION RESULT</span>
+    <h2>Postfix Expression</h2>
+    <div class="postfix-output">{{ result }}</div>
+</section>
+
+<section class="steps-panel">
+    <h2>Conversion Steps</h2>
+    <p>Follow how each token moves through the Stack and output.</p>
+
+    <div class="steps-table-wrapper">
+        <table class="steps-table">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Token</th>
+                    <th>Action</th>
+                    <th>Stack (Top First)</th>
+                    <th>Postfix Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for step in steps %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ step.token }}</td>
+                    <td>{{ step.action }}</td>
+                    <td>{{ step.stack }}</td>
+                    <td>{{ step.output }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+
+
+            {% if error %}
+            <p class="infix-error">{{ error }}</p>
+            {% endif %}
+
+            <a href="{{ url_for('works') }}" class="infix-back">
+                ← Back to Works
+            </a>
+
+        </section>
+    </main>
+
+</body>
+</html>
+
