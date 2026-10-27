@@ -1,0 +1,353 @@
+
+
+/* =========================================
+   GLOBAL THEME
+========================================= */
+
+:root {
+    --bg-black: #080808;
+    --bg-burgundy: #241014;
+    --bg-card: #171014;
+    --red: #c66b6b;
+    --red-light: #e58b8b;
+    --red-border: rgba(198, 107, 107, 0.3);
+    --red-glow: rgba(198, 107, 107, 0.14);
+    --text-main: #f5f5f5;
+    --text-muted: #c6b8bc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(
+            circle at 12% 18%,
+            rgba(198, 107, 107, 0.15),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 88% 78%,
+            rgba(125, 35, 52, 0.16),
+            transparent 34%
+        ),
+        linear-gradient(135deg, #080808, #1c0c11, #10090b);
+    background-attachment: fixed;
+}
+
+/* =========================================
+   SHARED NAVBAR
+========================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    padding: 12px 8%;
+
+    background: linear-gradient(
+        110deg,
+        rgba(10, 10, 10, 0.97),
+        rgba(43, 17, 24, 0.97)
+    );
+
+    border-bottom: 1px solid var(--red-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #fff;
+    font-size: 21px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: color 0.3s ease;
+}
+
+.navbar .logo:hover {
+    color: var(--red-light);
+}
+
+.navbar .nav-profile {
+    display: block;
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+
+    box-shadow: 0 0 12px var(--red-glow);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.nav-links a {
+    padding: 9px 14px;
+    border-radius: 8px;
+
+    color: #d8cbd0;
+    font-size: 15px;
+    text-decoration: none;
+
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+    background: rgba(198, 107, 107, 0.12);
+}
+
+/* =========================================
+   SHARED PAGE CONTAINER
+========================================= */
+
+.container {
+    position: relative;
+    z-index: 1;
+
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.container > h1 {
+    color: var(--red-light);
+}
+
+.container > p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   SHARED CARDS
+========================================= */
+
+.card {
+    padding: 28px;
+    border: 1px solid var(--red-border);
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(30, 15, 19, 0.97),
+        rgba(12, 10, 11, 0.97)
+    );
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(229, 139, 139, 0.55);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--red-light);
+}
+
+.card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* =========================================
+   SHARED BUTTONS
+========================================= */
+
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: linear-gradient(135deg, #c66b6b, #873747);
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #e58b8b, #a94f5f);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   SHARED FORMS
+========================================= */
+
+.form-box {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 35px;
+
+    border: 1px solid var(--red-border);
+    border-radius: 16px;
+
+    background: linear-gradient(135deg, #1e0f13, #0c0a0b);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.form-box h1,
+.form-box h2 {
+    color: #fff;
+}
+
+.form-box p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 10px;
+
+    border: 1px solid var(--red-border);
+    border-radius: 8px;
+
+    background: #110d0f;
+    color: #fff;
+    font: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a9959b;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--red-light);
+    box-shadow: 0 0 0 3px rgba(198, 107, 107, 0.14);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* =========================================
+   SHARED RESULTS AND MESSAGES
+========================================= */
+
+.result,
+.error {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border-radius: 8px;
+}
+
+.result {
+    border: 1px solid var(--red-border);
+    border-left: 4px solid var(--red);
+    background: rgba(125, 35, 52, 0.2);
+    color: #f2c6cc;
+}
+
+.error {
+    border-left: 4px solid #ff6878;
+    background: rgba(220, 60, 80, 0.1);
+    color: #ff9ba7;
+}
+
+/* =========================================
+   SHARED FOOTER
+========================================= */
+
+.footer {
+    margin-top: 70px;
+    padding: 25px;
+    text-align: center;
+
+    background: linear-gradient(110deg, #080808, #241014);
+    color: var(--text-muted);
+
+    border-top: 1px solid var(--red-border);
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer::first-letter {
+    color: var(--red-light);
+}
+
+/* =========================================
+   RESPONSIVE NAVBAR AND SHARED ELEMENTS
+========================================= */
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 5%;
+    }
+
+    .nav-links {
+        gap: 6px;
+    }
+
+    .nav-links a {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .container {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .form-box {
+        padding: 25px;
+    }
+}

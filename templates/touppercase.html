@@ -1,19 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Convert to Uppercase</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Uppercase | My Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/touppercase.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
-    <h1>Convert String to Uppercase</h1>
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
 
-    <form action="/works" method="post">
-        <label for="inputString">Enter a string:</label>
-        <input type="text" id="inputString" name="inputString">
-        <input type="submit" value="Convert">
-    </form>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works" class="active">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
 
-    {% if result %}
-    <p>Converted string: {{ result }}</p>
-    {% endif %}
+    <main class="page">
+        <header class="heading">
+            <div class="eyebrow">Python / String Manipulation</div>
+            <h1>Text <span>Transformation.</span></h1>
+            <p>
+                A simple Python string operation that transforms your text
+                into uppercase letters while preserving spaces, numbers,
+                and punctuation.
+            </p>
+        </header>
+
+        <section class="converter">
+            <div class="input-panel">
+                <div class="section-label">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Input Text
+                </div>
+                <p class="helper">Enter a word, sentence, or multiple lines below.</p>
+
+                <form method="POST" id="uppercaseForm">
+                    <textarea
+                        id="text"
+                        name="text"
+                        placeholder="Type your text here..."
+                        required
+                    >{{ entered_text|default('') }}</textarea>
+
+                    <div class="input-meta">
+                        <span>Python string method</span>
+                        <span id="charCount">0 characters</span>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Convert to Uppercase
+                    </button>
+                </form>
+            </div>
+
+            <div class="result-panel">
+                <div class="result-top">
+                    <div class="section-label" style="margin: 0;">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                        Converted Output
+                    </div>
+                    <span class="status">
+                        <i class="fa-solid fa-circle"></i>
+                        RESULT
+                    </span>
+                </div>
+
+                {% if result is not none and result is defined %}
+                    <div class="result-box" id="resultText">{{ result }}</div>
+                    <button type="button" class="copy-btn" id="copyBtn">
+                        <i class="fa-regular fa-copy"></i>
+                        Copy result
+                    </button>
+                {% else %}
+                    <div class="result-box empty" id="resultText">
+                        <div>
+                            <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 24px; display: block; margin-bottom: 12px; color: #bd5267;"></i>
+                            Your converted text will appear here.
+                        </div>
+                    </div>
+                    <button type="button" class="copy-btn" id="copyBtn" disabled style="opacity: .4; cursor: not-allowed;">
+                        <i class="fa-regular fa-copy"></i>
+                        Copy result
+                    </button>
+                {% endif %}
+            </div>
+        </section>
+
+        <div class="tip">
+            <strong><i class="fa-solid fa-lightbulb"></i> How it works:</strong>
+            Python's <code>.upper()</code> method converts lowercase letters
+            to uppercase. For example, <code>Hello World</code> becomes
+            <code>HELLO WORLD</code>.
+        </div>
+
+        <a href="/works" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Programming Works
+        </a>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/touppercase.js') }}"></script>
 </body>
 </html>

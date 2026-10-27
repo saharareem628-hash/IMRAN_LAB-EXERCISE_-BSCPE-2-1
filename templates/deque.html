@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deque | My Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deque.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works" class="active">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="deque-page">
+
+        <a href="/works" class="deque-back-link">← Back to Works</a>
+
+        <header class="deque-heading">
+            <span class="deque-tag">DATA STRUCTURES</span>
+            <h1>Double-Ended <span>Queue</span></h1>
+            <p>
+                A Deque allows you to add and remove elements from both
+                the front and the rear of the collection.
+            </p>
+        </header>
+
+        <section class="deque-layout">
+
+            <div class="deque-card deque-controls">
+                <div class="deque-card-heading">
+                    <span class="deque-icon">↔</span>
+                    <div>
+                        <h2>Deque Operations</h2>
+                        <p>Manage your elements</p>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ url_for('deque.deque_page') }}"
+                      class="deque-form">
+                    <label for="deque-value">Enter a value</label>
+                    <input
+                        type="text"
+                        id="deque-value"
+                        name="value"
+                        placeholder="e.g. Python"
+                        autocomplete="off"
+                    >
+
+                    <div class="deque-button-grid">
+                        <button type="submit" name="action" value="add_front"
+                                class="deque-btn deque-btn-primary">
+                            <span>＋</span> Add to Front
+                        </button>
+
+                        <button type="submit" name="action" value="add_rear"
+                                class="deque-btn deque-btn-primary">
+                            <span>＋</span> Add to Rear
+                        </button>
+
+                        <button type="submit" name="action" value="remove_front"
+                                class="deque-btn deque-btn-secondary">
+                            <span>−</span> Remove Front
+                        </button>
+
+                        <button type="submit" name="action" value="remove_rear"
+                                class="deque-btn deque-btn-secondary">
+                            <span>−</span> Remove Rear
+                        </button>
+
+                        <button type="submit" name="action" value="peek_front"
+                                class="deque-btn deque-btn-outline">
+                            View Front
+                        </button>
+
+                        <button type="submit" name="action" value="peek_rear"
+                                class="deque-btn deque-btn-outline">
+                            View Rear
+                        </button>
+                    </div>
+                </form>
+
+                <form method="POST" action="{{ url_for('deque.deque_page') }}"
+                      onsubmit="return confirm('Clear the entire deque?');">
+                    <button type="submit" name="action" value="clear"
+                            class="deque-btn deque-btn-clear">
+                        Clear Deque
+                    </button>
+                </form>
+
+                {% if message %}
+                <div class="deque-message {% if success %}success{% else %}error{% endif %}"
+                     role="status">
+                    <span>{{ '✓' if success else '!' }}</span>
+                    {{ message }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="deque-card deque-visual-card">
+                <div class="deque-card-heading">
+                    <span class="deque-icon">▤</span>
+                    <div>
+                        <h2>Deque Data</h2>
+                        <p>Current elements</p>
+                    </div>
+                    <span class="deque-count">{{ items|length }} item{% if items|length != 1 %}s{% endif %}</span>
+                </div>
+
+                <div class="deque-end-labels">
+                    <span>← FRONT</span>
+                    <span>REAR →</span>
+                </div>
+
+                {% if items %}
+                <div class="deque-items">
+                    {% for item in items %}
+                    <div class="deque-item">
+                        <span class="deque-item-index">{{ "%02d"|format(loop.index) }}</span>
+                        <span class="deque-item-value">{{ item }}</span>
+                        {% if loop.first %}
+                        <span class="deque-item-badge">FRONT</span>
+                        {% elif loop.last %}
+                        <span class="deque-item-badge">REAR</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="deque-empty">
+                    <div class="deque-empty-icon">↔</div>
+                    <h3>Your deque is empty</h3>
+                    <p>Add an element from the front or rear to get started.</p>
+                </div>
+                {% endif %}
+
+                <div class="deque-info">
+                    <span class="deque-info-dot"></span>
+                    <p>
+                        <strong>Remember:</strong> A deque supports insertion
+                        and deletion at both ends.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="deque-footer">
+            <span>DATA STRUCTURES & ALGORITHMS</span>
+            <span>DEQUE IMPLEMENTATION</span>
+        </footer>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Art of Sorting | My Portfolio</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sorting.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+  <a href="/" class="logo">
+    <img
+      src="{{ url_for('static', filename='images/profile.png') }}"
+      alt="Profile picture"
+      class="nav-profile"
+    >
+    <span>My Portfolio</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/works">Works</a>
+    <a href="/contact">Contact</a>
+  </div>
+</nav>
+
+
+
+<main>
+  <a href="/works" class="back-to-works">← Back to Works</a>
+
+  <div class="kicker">Works / 07 — Algorithm studies</div>
+
+  <h1>The art of <em>sorting.</em></h1>
+  <p class="intro">Five approaches to one problem: arranging data. Explore how each algorithm compares, moves, and organizes values through a live visual experiment.</p>
+  <hr class="rule">
+
+  <div class="layout">
+    <aside>
+      <div class="index-title">THE ALGORITHM INDEX / 05</div>
+      <div class="algorithm-index">
+        <button class="alg active" data-alg="bubble"><small>01</small><span>Bubble sort</span></button>
+        <button class="alg" data-alg="selection"><small>02</small><span>Selection sort</span></button>
+        <button class="alg" data-alg="insertion"><small>03</small><span>Insertion sort</span></button>
+        <button class="alg" data-alg="merge"><small>04</small><span>Merge sort</span></button>
+        <button class="alg" data-alg="quick"><small>05</small><span>Quick sort</span></button>
+      </div>
+      <p class="side-note">STUDY NOTE<br>Same data.<br>Different strategies.<br>Different costs.</p>
+    </aside>
+
+    <section class="lab">
+      <div class="lab-head">
+        <div>
+          <div class="kicker" id="alg-kicker">01 / EXCHANGE</div>
+          <h2 id="alg-title">Bubble sort</h2>
+          <p id="alg-desc">Compare neighboring values and swap them when they are out of order.</p>
+        </div>
+        <div class="index-number" id="alg-complexity">AVG O(n²)</div>
+      </div>
+
+      <div class="canvas" id="canvas" aria-label="Sorting visualization"></div>
+
+      <div class="controls">
+        <button class="btn primary" id="start">▶ Start sorting</button>
+        <button class="btn" id="step">Next step →</button>
+        <button class="btn" id="reset">↺ Reset</button>
+        <button class="btn" id="shuffle">Shuffle data</button>
+      </div>
+
+      <div class="settings">
+        <label class="field">INPUT VALUES
+          <input id="values" value="42, 18, 65, 27, 91, 34, 56, 12, 73, 48">
+        </label>
+        <label class="field">ANIMATION SPEED
+          <select id="speed">
+            <option value="650">Slow</option>
+            <option value="300" selected>Normal</option>
+            <option value="90">Fast</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><small>COMPARISONS</small><strong id="comparisons">000</strong></div>
+        <div class="stat"><small>SWAPS / MOVES</small><strong id="swaps">000</strong></div>
+        <div class="stat"><small>STEPS</small><strong id="steps">000</strong></div>
+      </div>
+
+      <section id="trace-panel" class="trace-panel hidden">
+        <div class="trace-heading">
+          <h3 id="trace-title">Sorting breakdown</h3>
+          <span id="trace-count">TREE VIEW</span>
+        </div>
+        <p class="trace-note" id="trace-note"></p>
+        <div class="tree-scroll"><div id="tree" class="tree"></div></div>
+        <div id="trace-steps" class="trace-steps"></div>
+      </section>
+
+      <div class="bottom">
+        <div>
+          <div class="kicker">THE PRINCIPLE</div>
+          <h3>How it works</h3>
+          <p id="explanation">Bubble sort scans neighboring values repeatedly. Larger values gradually move toward the end.</p>
+        </div>
+        <div>
+          <div class="kicker">IMPLEMENTATION</div>
+          <h3>Python logic</h3>
+          <div class="code" id="code"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>MY PORTFOLIO · DATA STRUCTURES &amp; ALGORITHMS</footer>
+</main>
+
+<script src="{{ url_for('static', filename='js/sorting.js') }}"></script>
+</body>
+</html>

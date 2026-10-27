@@ -1,118 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area of a Circle | My Portfolio</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Area of Circle</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/circle.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
-
     <nav class="navbar">
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
 
-    <a href="/" class="logo">
-        <img
-            src="{{ url_for('static', filename='images/profile.jpg') }}"
-            alt="My Profile Picture"
-            class="nav-profile"
-        >
-        <span>My Portfolio</span>
-    </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/profile">Profile</a>
-        <a href="/works">Works</a>
-        <a href="/contact">Contact</a>
-    </div>
+    <main class="calculator-page">
+        <a href="/works" class="back-link">
+            <span aria-hidden="true">←</span> Back to Programming Works
+        </a>
 
-</nav>
+        <div class="calculator-layout">
+            <section class="calculator-card">
+                <div class="eyebrow">Geometry / Calculator 01</div>
 
-    <!-- CIRCLE CALCULATOR -->
+                <h1>Area of a <span>Circle</span></h1>
 
-    <div class="container">
+                <p class="description">
+                    Enter the radius of your circle and calculate its area
+                    using a simple mathematical formula.
+                </p>
 
-        <div class="form-box">
+                <div class="formula-chip">
+                    <strong>A = πr²</strong>
+                    <span>Area = pi × radius²</span>
+                </div>
 
-            <h1>Area of a Circle</h1>
+                <form method="POST" action="{{ url_for('works.acircle') }}">
+                    <div class="form-group">
+                        <label for="radius">Radius</label>
 
-            <p>
-                Enter the radius of the circle to calculate
-                its area.
-            </p>
+                        <div class="input-wrap">
+                            <input
+                                type="number"
+                                id="radius"
+                                name="radius"
+                                step="any"
+                                min="0"
+                                placeholder="Enter radius"
+                                value="{{ request.form.get('radius', '') }}"
+                                required
+                            >
+                            <span class="input-suffix">units</span>
+                        </div>
+                    </div>
 
-            <form method="POST">
+                    <button type="submit" class="calculate-btn">
+                        Calculate Area <span aria-hidden="true">→</span>
+                    </button>
+                </form>
 
-                <label for="radius">
-                    Radius
-                </label>
+                {% if result is not none %}
+                    <div class="result-box" role="status" aria-live="polite">
+                        <span class="result-label">Calculated Area</span>
+                        <div class="result-value">{{ "%.4f"|format(result) }}</div>
+                        <div class="result-note">square units</div>
+                    </div>
+                {% endif %}
 
-                <input
-                    type="number"
-                    id="radius"
-                    name="radius"
-                    step="any"
-                    min="0"
-                    placeholder="Enter radius"
-                    required
-                >
+                {% if error %}
+                    <div class="error-box" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+            </section>
 
-                <button
-                    type="submit"
-                    class="btn">
+            <aside class="visual-card">
+                <div class="visual-label">Circle geometry</div>
 
-                    Calculate Area
+                <div class="circle-visual" aria-label="Circle illustration">
+                    <span class="pi-symbol">π</span>
+                </div>
 
-                </button>
+                <h2>Discover the Area</h2>
 
-            </form>
-
-
-            <!-- RESULT -->
-
-            {% if result is not none %}
-
-            <div class="result">
-
-                <strong>
-                    Result:
-                </strong>
-
-                The area of the circle is
-                {{ result }}
-
-            </div>
-
-            {% endif %}
-
-
-            <!-- ERROR -->
-
-            {% if error %}
-
-            <div class="error">
-
-                {{ error }}
-
-            </div>
-
-            {% endif %}
-
+                <p>
+                    The area of a circle is found by multiplying π
+                    by the radius squared. Try entering a radius to begin.
+                </p>
+            </aside>
         </div>
 
-    </div>
-
+        <footer class="page-footer">
+            © 2026 My Portfolio · Python &amp; Flask
+        </footer>
+    </main>
 </body>
-
 </html>

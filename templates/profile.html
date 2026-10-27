@@ -3,315 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <meta name="theme-color" content="#10090d">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <title>Profile | Sahara Reem M. Imran</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
+    <a href="/" class="logo">
+        <img
+            src="{{ url_for('static', filename='images/profile.png') }}"
+            alt="My Profile Picture"
+            class="nav-profile"
+        >
+        <span>My Portfolio</span>
+    </a>
 
-        <a href="/" class="logo">
-            <img src="{{ url_for('static', filename='images/profile.jpg') }}"
-                 alt="My Profile Picture"
-                 class="nav-profile">
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/works">Works</a>
+        <a href="/contact">Contact</a>
+    </div>
+</nav>
 
-            <span>My Portfolio</span>
-        </a>
+    <main class="profile-page">
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/profile">Profile</a>
-            <a href="/works">Works</a>
-            <a href="/contact">Contact</a>
-        </div>
+        <!-- INTRODUCTION -->
+        <header class="profile-hero">
+            <div class="profile-kicker">The person behind the code</div>
 
-    </nav>
+            <h1>
+                Sahara Reem
+                <span>M. Imran.</span>
+            </h1>
 
-
-    <!-- MAIN CONTENT -->
-    <div class="container profile-page">
-
-
-        <!-- PROFILE TITLE -->
-        <div class="profile-header">
-
-            <div class="section-label">
-                GET TO KNOW ME
-            </div>
-
-            <h1>My Profile</h1>
-
-            <p class="profile-intro">
-                Computer Engineering student passionate about programming,
-                web development, and technology.
+            <p class="profile-hero-description">
+                A Computer Engineering student exploring the world of
+                programming, web development, and technology — one project
+                and one new skill at a time.
             </p>
 
-        </div>
-
-
-        <!-- =========================================
-             PHOTO + PERSONAL INFORMATION
-             ========================================= -->
-
-        <section class="profile-main-card">
-
-            <!-- PHOTO -->
-            <div class="profile-photo-box">
-
-                <img src="{{ url_for('static', filename='images/profile.jpg') }}"
-                     alt="Sahara Reem M. Imran"
-                     class="profile-photo">
-
+            <div class="profile-status">
+                <span></span>
+                Computer Engineering Student
             </div>
+        </header>
 
+        <!-- PERSONAL INFORMATION -->
+        <section class="profile-section">
 
-            <!-- PERSONAL INFORMATION -->
-            <div class="personal-info-box">
-
-                <div class="section-label">
-                    PERSONAL PROFILE
+            <div class="section-heading">
+                <div>
+                    <span class="section-number">01 / THE BASICS</span>
+                    <h2>Who I Am</h2>
                 </div>
 
-                <h2>Personal Information</h2>
+                <p class="section-side-note">
+                    A little background about my academic journey.
+                </p>
+            </div>
 
-                <div class="personal-info-list">
+            <div class="identity-layout">
 
-                    <div class="info-item">
-                        <span class="info-label">Name</span>
-                        <span class="info-value">
+                <div class="identity-statement">
+                    <div class="identity-symbol">S.</div>
+
+                    <div>
+                        <h3>Learning today.<br>Building tomorrow.</h3>
+
+                        <p>
+                            Currently developing my knowledge and skills
+                            as I work toward becoming a better engineer.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="identity-details">
+
+                    <div class="identity-row">
+                        <span class="identity-label">Full Name</span>
+                        <span class="identity-value">
                             Sahara Reem M. Imran
                         </span>
                     </div>
 
-                    <div class="info-item">
-                        <span class="info-label">Course</span>
-                        <span class="info-value">
+                    <div class="identity-row">
+                        <span class="identity-label">Course</span>
+                        <span class="identity-value">
                             Bachelor of Science in Computer Engineering
                         </span>
                     </div>
 
-                    <div class="info-item">
-                        <span class="info-label">Year Level</span>
-                        <span class="info-value">
-                            2nd Year
-                        </span>
+                    <div class="identity-row">
+                        <span class="identity-label">Year Level</span>
+                        <span class="identity-value">2nd Year</span>
                     </div>
 
-                    <div class="info-item">
-                        <span class="info-label">School</span>
-                        <span class="info-value">
+                    <div class="identity-row">
+                        <span class="identity-label">University</span>
+                        <span class="identity-value">
                             Polytechnic University of the Philippines - Main Campus
                         </span>
                     </div>
 
                 </div>
-
             </div>
-
         </section>
 
+        <!-- ABOUT ME -->
+        <section class="profile-section">
 
-        <!-- =========================================
-             ABOUT ME + SKILLS + INTERESTS
-             ========================================= -->
-
-        <div class="profile-content-grid">
-
-
-            <!-- ABOUT ME -->
-            <section class="profile-section-card">
-
-                <div class="section-label">
-                    ABOUT ME
+            <div class="section-heading">
+                <div>
+                    <span class="section-number">02 / MY STORY</span>
+                    <h2>Beyond the Screen</h2>
                 </div>
+            </div>
 
-                <h2>About Me</h2>
+            <div class="about-panel">
+                <h3>Curiosity drives my learning.</h3>
 
                 <p>
-                    I am currently a Computer Engineering student who enjoys
-                    learning programming and web development.
+                    I am a Computer Engineering student interested in
+                    understanding how technology works and how it can be
+                    used to create useful and meaningful projects.
                 </p>
 
                 <p>
-                    I enjoy working with Python, JavaScript, and web
-                    development frameworks while continuously improving
-                    my programming skills.
+                    I enjoy exploring programming and web development,
+                    especially working with Python, JavaScript, and
+                    web frameworks. Every challenge gives me an opportunity
+                    to learn something new and improve my abilities.
                 </p>
 
-            </section>
-
-
-            <!-- SKILLS -->
-            <section class="profile-section-card">
-
-                <div class="section-label">
-                    WHAT I CAN DO
-                </div>
-
-                <h2>🛠️ My Skills</h2>
-
-                <div class="skill-list">
-
-                    <span class="skill-tag">Python</span>
-
-                    <span class="skill-tag">
-                        Problem-Solving
-                    </span>
-
-                    <span class="skill-tag">
-                        Critical Thinking
-                    </span>
-
-                    <span class="skill-tag">
-                        Teamwork
-                    </span>
-
-                    <span class="skill-tag">
-                        Time Management
-                    </span>
-
-                </div>
-
-            </section>
-
-
-            <!-- INTERESTS -->
-            <section class="profile-section-card">
-
-                <div class="section-label">
-                    WHAT I ENJOY
-                </div>
-
-                <h2>❤️ My Interests</h2>
-
-                <div class="interest-list">
-
-                    <span class="interest-tag">
-                        Web Development
-                    </span>
-
-                    <span class="interest-tag">
-                        Programming
-                    </span>
-
-                    <span class="interest-tag">
-                        Networking
-                    </span>
-
-                    <span class="interest-tag">
-                        Learning New Things
-                    </span>
-
-                    <span class="interest-tag">
-                        Technology
-                    </span>
-
-                </div>
-
-            </section>
-
-        </div>
-
-
-        <!-- =========================================
-             CONTACT ME
-             ========================================= -->
-
-        <section class="social-section">
-
-            <div class="section-label">
-                GET IN TOUCH
+                <p>
+                    I believe that growth comes from consistent practice,
+                    patience, and the willingness to keep learning even
+                    when things get difficult.
+                </p>
             </div>
-
-            <h2>Let's Connect</h2>
-
-            <p class="social-subtitle">
-                Feel free to connect with me through my social media accounts.
-            </p>
-
-
-            <div class="social-links">
-
-
-                <!-- FACEBOOK -->
-                <a href="https://www.facebook.com/sahara.imran.7"
-                   class="social-card"
-                   target="_blank"
-                   rel="noopener noreferrer">
-
-                    <span class="social-icon">f</span>
-
-                    <div class="social-content">
-                        <span class="social-name">
-                            Facebook
-                        </span>
-
-                        <span class="social-handle">
-                            sahara.imran.7
-                        </span>
-                    </div>
-
-                    <span class="social-arrow">↗</span>
-
-                </a>
-
-
-                <!-- INSTAGRAM -->
-                <a href="https://www.instagram.com/srvxm_/"
-                   class="social-card"
-                   target="_blank"
-                   rel="noopener noreferrer">
-
-                    <span class="social-icon">◎</span>
-
-                    <div class="social-content">
-                        <span class="social-name">
-                            Instagram
-                        </span>
-
-                        <span class="social-handle">
-                            @srvxm_
-                        </span>
-                    </div>
-
-                    <span class="social-arrow">↗</span>
-
-                </a>
-
-
-                <!-- TIKTOK -->
-                <a href="https://www.tiktok.com/@srxvrm_"
-                   class="social-card"
-                   target="_blank"
-                   rel="noopener noreferrer">
-
-                    <span class="social-icon">♪</span>
-
-                    <div class="social-content">
-                        <span class="social-name">
-                            TikTok
-                        </span>
-
-                        <span class="social-handle">
-                            @srxvrm_
-                        </span>
-                    </div>
-
-                    <span class="social-arrow">↗</span>
-
-                </a>
-
-
-            </div>
-
         </section>
 
+        <!-- SKILLS AND INTERESTS -->
+        <section class="profile-section">
 
-    </div>
+            <div class="section-heading">
+                <div>
+                    <span class="section-number">03 / MY TOOLKIT</span>
+                    <h2>Skills & Interests</h2>
+                </div>
+
+                <p class="section-side-note">
+                    The abilities I develop and the topics that inspire me.
+                </p>
+            </div>
+
+            <div class="expertise-grid">
+
+                <div class="expertise-panel">
+                    <div class="expertise-top">
+                        <div class="expertise-icon">⌘</div>
+
+                        <div>
+                            <h3>My Skills</h3>
+                            <p>What I bring to the table</p>
+                        </div>
+                    </div>
+
+                    <div class="tag-list">
+                        <span class="profile-tag">Python</span>
+                        <span class="profile-tag">Problem-Solving</span>
+                        <span class="profile-tag">Critical Thinking</span>
+                        <span class="profile-tag">Teamwork</span>
+                        <span class="profile-tag">Time Management</span>
+                    </div>
+                </div>
+
+                <div class="expertise-panel">
+                    <div class="expertise-top">
+                        <div class="expertise-icon">✳</div>
+
+                        <div>
+                            <h3>My Interests</h3>
+                            <p>Things I love exploring</p>
+                        </div>
+                    </div>
+
+                    <div class="tag-list">
+                        <span class="profile-tag">Web Development</span>
+                        <span class="profile-tag">Programming</span>
+                        <span class="profile-tag">Networking</span>
+                        <span class="profile-tag">Learning New Things</span>
+                        <span class="profile-tag">Technology</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SOCIAL LINKS -->
+        <section class="profile-section">
+
+            <div class="connect-panel">
+                <div class="profile-kicker">Find me online</div>
+
+                <h2>Let's Connect.</h2>
+
+                <p class="connect-description">
+                    Want to connect? You can find me on these social
+                    platforms.
+                </p>
+
+                <div class="social-grid">
+
+                    <a
+                        class="social-link"
+                        href="https://www.facebook.com/sahara.imran.7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="social-symbol">f</span>
+
+                        <span class="social-text">
+                            <strong>Facebook</strong>
+                            <small>sahara.imran.7</small>
+                        </span>
+
+                        <span class="social-arrow">↗</span>
+                    </a>
+
+                    <a
+                        class="social-link"
+                        href="https://www.instagram.com/srvxm_/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="social-symbol">◎</span>
+
+                        <span class="social-text">
+                            <strong>Instagram</strong>
+                            <small>@srvxm_</small>
+                        </span>
+
+                        <span class="social-arrow">↗</span>
+                    </a>
+
+                    <a
+                        class="social-link"
+                        href="https://www.tiktok.com/@srxvrm_"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="social-symbol">♪</span>
+
+                        <span class="social-text">
+                            <strong>TikTok</strong>
+                            <small>@srxvrm_</small>
+                        </span>
+
+                        <span class="social-arrow">↗</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="profile-footer-note">
+            Designed with creativity, curiosity, and a love for technology.
+        </footer>
+
+    </main>
 
 </body>
 </html>

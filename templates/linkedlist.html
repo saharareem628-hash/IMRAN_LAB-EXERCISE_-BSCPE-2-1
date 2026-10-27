@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Linked List</title>
+    <title>Linked List | My Portfolio</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/linkedlist.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar">
-
         <a href="/" class="logo">
-            <img
-                src="{{ url_for('static', filename='images/profile.jpg') }}"
-                alt="My Profile Picture"
-                class="nav-profile"
-            >
+            <img src="{{ url_for('static', filename='images/profile.png') }}"
+                 alt="My Profile Picture" class="nav-profile">
             <span>My Portfolio</span>
         </a>
 
@@ -30,119 +25,102 @@
             <a href="/works">Works</a>
             <a href="/contact">Contact</a>
         </div>
-
     </nav>
 
+<div class="back-container">
+    <a href="/works" class="back-btn">
+        <span>←</span> Back to Programming Works
+    </a>
+</div>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
+    <main class="page">
+        <header class="heading">
+            <div class="eyebrow">Data Structures / 01</div>
+            <h1>Linked List <span>Visualizer.</span></h1>
+            <p>
+                Build, explore, and manage nodes in a singly linked list.
+                See how each node connects to the next.
+            </p>
+        </header>
 
-        <h1>Linked List</h1>
+        <div class="workspace">
+            <section class="panel operations-panel">
+                <h2 class="panel-title">Operations</h2>
+                <p class="panel-description">
+                    Enter a value, then choose an operation to update your list.
+                </p>
 
-        <p>
-            Perform different operations on the linked list.
-        </p>
+                <label class="field-label" for="nodeValue">Node value</label>
+                <input class="value-input" id="nodeValue" type="text"
+                       placeholder="e.g. Python" autocomplete="off"
+                       maxlength="60">
 
-
-        <!-- TWO BOXES SIDE-BY-SIDE -->
-        <div class="linked-list-layout">
-
-
-            <!-- LEFT BOX: OPERATIONS -->
-            <div class="form-box linked-operations">
-
-                <h2>Linked List Operations</h2>
-
-                <form method="POST">
-
-                    <label for="value">Value</label>
-
-                    <input
-                        type="text"
-                        id="value"
-                        name="value"
-                        placeholder="Enter a value"
-                    >
-
-
-                    <button
-                        type="submit"
-                        name="action"
-                        value="add_beginning"
-                        class="btn operation-btn">
-                        Add at the Beginning
+                <div class="button-grid">
+                    <button class="action-btn primary" id="addHead" type="button">
+                        + Add at Beginning
                     </button>
-
-
-                    <button
-                        type="submit"
-                        name="action"
-                        value="add"
-                        class="btn operation-btn">
-                        Add
+                    <button class="action-btn primary" id="addTail" type="button">
+                        + Add at End
                     </button>
-
-
-                    <button type="submit" name="action" value="delete" class="btn operation-btn" onclick="return confirmDelete()">Delete</button>
-
-
-                    <button type="submit" name="action" value="search" class="btn operation-btn" onclick="return highlightSearch()">Search</button>
-
-                </form>
-
-
-                {% if message %}
-
-                <div class="result">
-                    {{ message }}
+                    <button class="action-btn" id="deleteHead" type="button">
+                        Delete Head
+                    </button>
+                    <button class="action-btn" id="deleteValue" type="button">
+                        Delete by Value
+                    </button>
+                    <button class="action-btn wide" id="searchValue" type="button">
+                        Search Value
+                    </button>
+                    <button class="action-btn danger wide" id="clearList" type="button">
+                        Clear List
+                    </button>
                 </div>
 
-                {% endif %}
-
-            </div>
-
-
-            <!-- RIGHT BOX: LINKED LIST DATA -->
-            <div class="form-box linked-data">
-
-                <h2>Linked List Data</h2>
-
-
-                {% if items %}
-
-                <div class="linked-list-display">
-
-                    {% for item in items %}
-
-                    <div class="node">
-                        {{ item }}
-                    </div>
-
-
-                    {% if not loop.last %}
-
-                    <div class="arrow">
-                        ↓
-                    </div>
-
-                    {% endif %}
-
-                    {% endfor %}
-
+                <div class="tip">
+                    <strong>Quick tip</strong><br>
+                    Search and delete match values without case sensitivity.
+                    This demo stores your list in the current page session.
                 </div>
 
+                <div class="message" id="message" role="status" aria-live="polite"></div>
+            </section>
 
-                {% else %}
+            <section class="panel visual-panel">
+                <div class="visual-header">
+                    <div>
+                        <h2 class="panel-title">Node Structure</h2>
+                        <p class="panel-description" style="margin: 5px 0 0;">
+                            Head → Nodes → Null
+                        </p>
+                    </div>
+                    <div class="count-badge" id="nodeCount">0 nodes</div>
+                </div>
 
-                <p>The linked list is empty.</p>
+                <div class="list-status">
+                    STATUS: <span id="listStatus">EMPTY LIST</span>
+                </div>
 
-                {% endif %}
+                <div class="list-visual">
+                    <div class="head-label">HEAD ↓</div>
+                    <div class="nodes" id="nodesContainer">
+                        <div class="empty-state">
+                            <div class="empty-icon">◇</div>
+                            <strong>Your list is empty</strong>
+                            Add a value to create your first node.
+                        </div>
+                    </div>
+                </div>
 
-            </div>
-
+                <div class="legend">
+                    <span>Node data</span>
+                    <span>Next pointer</span>
+                    <span>End of list</span>
+                </div>
+            </section>
         </div>
+    </main>
 
-    </div>
-
+    <script src="{{ url_for('static', filename='js/linkedlist.js') }}"></script>
+    
 </body>
 </html>

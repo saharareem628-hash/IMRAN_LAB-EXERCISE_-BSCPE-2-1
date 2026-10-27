@@ -1,19 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programming Works</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Programming Works | My Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/works.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
+
     <!-- NAVBAR -->
     <nav class="navbar">
         <a href="/" class="logo">
             <img
-                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                src="{{ url_for('static', filename='images/profile.png') }}"
                 alt="My Profile Picture"
                 class="nav-profile"
             >
@@ -23,62 +29,271 @@
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/profile">Profile</a>
-            <a href="/works">Works</a>
+            <a href="/works" class="active">Works</a>
             <a href="/contact">Contact</a>
         </div>
     </nav>
 
-    <!-- WORKS -->
-    <div class="container">
-        <h1>Programming Works</h1>
-        <p>
-            Below are some of my programming implementations
-            using Python and Flask.
-        </p>
+    <!-- WORKS PAGE -->
+    <main class="works-page">
 
-        <div class="card-container">
+        <header class="works-header">
+            <div class="eyebrow">My projects / Programming portfolio</div>
 
-            <!-- CIRCLE -->
-            <div class="card work-card">
-                <div class="shape circle-shape">π</div>
+            <h1>Programming <span>Works.</span></h1>
+
+            <p>
+                A collection of programming exercises and interactive
+                implementations built while exploring Python, Flask,
+                algorithms, and data structures.
+            </p>
+
+            <div class="project-count">
+                <i class="fa-solid fa-code"></i>
+                <span>09 PROJECTS</span>
+                <span>•</span>
+                <span>Python &amp; Flask</span>
+            </div>
+        </header>
+
+        <section class="card-container" aria-label="Programming projects">
+
+            <!-- AREA OF CIRCLE -->
+            <article class="card work-card circle-card">
+                <div class="card-top">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <span class="project-number">01 / 09</span>
+                </div>
+
+                <span class="project-category">Geometry / Calculator</span>
+
                 <h2>Area of Circle</h2>
-                <p>Calculate the area of a circle using its radius.</p>
-                <a href="/works/area/circle" class="btn">Open</a>
-            </div>
 
-            <!-- TRIANGLE -->
-            <div class="card">
-                <h2>Area of Triangle</h2>
                 <p>
-                    Calculate the area of a triangle
-                    using its base and height.
+                    Calculate the area of a circle using its radius
+                    and the mathematical constant π.
                 </p>
-                <a href="/works/area/triangle" class="btn">Open</a>
-            </div>
+
+                <div class="card-footer">
+                    <span class="tech-label">π · Mathematics</span>
+                    <a href="/works/area/circle" class="btn">
+                        Open Project <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- AREA OF TRIANGLE -->
+            <article class="card work-card triangle-card">
+                <div class="card-top">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <span class="project-number">02 / 09</span>
+                </div>
+
+                <span class="project-category">Geometry / Calculator</span>
+
+                <h2>Area of Triangle</h2>
+
+                <p>
+                    Find the area of a triangle by entering its base
+                    and height.
+                </p>
+
+                <div class="card-footer">
+                    <span class="tech-label">½ × base × height</span>
+                    <a href="/works/area/triangle" class="btn">
+                        Open Project <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
 
             <!-- LINKED LIST -->
-            <div class="card">
+            <article class="card work-card linked-card">
+                <div class="card-top">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <span class="project-number">03 / 09</span>
+                </div>
+
+                <span class="project-category">Data Structures</span>
+
                 <h2>Linked List</h2>
+
                 <p>
-                    Add, delete, search, and display
-                    items in a linked list.
+                    Explore linked-list operations by adding, deleting,
+                    searching, and displaying items.
                 </p>
-                <a href="/works/linked-list" class="btn">Open</a>
-            </div>
+
+                <div class="card-footer">
+                    <span class="tech-label">Nodes · Pointers</span>
+                    <a href="/works/linked-list" class="btn">
+                        Open Project <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
 
             <!-- INFIX TO POSTFIX -->
-            <div class="card work-card">
+            <article class="card work-card infix-card">
+                <div class="card-top">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <span class="project-number">04 / 09</span>
+                </div>
+
+                <span class="project-category">Algorithms / Expressions</span>
+
                 <h2>Infix to Postfix Converter</h2>
+
                 <p>
                     Convert infix expressions into postfix notation
-                    using a Stack implemented with a Linked List.
+                    using a stack implemented with a linked list.
                 </p>
-                <a href="{{ url_for('infix_postfix') }}" class="btn">
-                    Open Converter
-                </a>
-            </div>
 
+                <div class="card-footer">
+                    <span class="tech-label">Stack · Expressions</span>
+                    <a href="{{ url_for('infix.infix_postfix') }}" class="btn">
+                        Open Converter <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- STACK LAB -->
+            <article class="card work-card stack-card">
+                <div class="card-top">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <span class="project-number">05 / 09</span>
+                </div>
+
+                <span class="project-category">Data Structures / Interactive Lab</span>
+
+                <h2>Stack Lab</h2>
+
+                <p>
+                    Practice Push, Pop, Peek, and Clear operations
+                    while exploring the Last In, First Out principle.
+                </p>
+
+                <div class="card-footer">
+                    <span class="tech-label">LIFO · Stack</span>
+                    <a href="{{ url_for('stack.stack') }}" class="btn">
+                        Open Stack Lab <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- TO UPPERCASE -->
+<article class="card work-card uppercase-card">
+    <div class="card-top">
+        <div class="project-icon">
+            <i class="fa-solid fa-text-height"></i>
         </div>
+        <span class="project-number">06 / 09</span>
     </div>
-</body>
-</html>
+
+    <span class="project-category">Python / String Manipulation</span>
+
+    <h2>To Uppercase Converter</h2>
+
+    <p>
+        Convert lowercase letters and text into uppercase using
+        Python string manipulation.
+    </p>
+
+    <div class="card-footer">
+        <span class="tech-label">Python · .upper()</span>
+        <a href="{{ url_for('works.touppercase') }}" class="btn">
+            Open Project <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</article>
+
+<!-- SORTING ALGORITHMS -->
+
+
+<article class="card work-card sorting-card">
+    <div class="card-top">
+        <div class="project-icon">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+        </div>
+        <span class="project-number">07 / 09</span>
+    </div>
+
+    <span class="project-category">Algorithms / Data Structures</span>
+
+    <h2>The Art of Sorting</h2>
+
+    <p>
+        Explore five sorting algorithms through interactive
+        animations, live statistics, and step-by-step comparisons.
+    </p>
+
+    <div class="card-footer">
+        <span class="tech-label">Bubble · Selection · Insertion · Merge · Quick</span>
+        <a href="/works/sorting" class="btn">
+            Explore Lab <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</article>
+
+<!-- QUEUE VISUALIZER -->
+<article class="card work-card queue-card">
+    <div class="card-top">
+        <div class="project-icon">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        </div>
+        <span class="project-number">08 / 09</span>
+    </div>
+
+    <span class="project-category">Data Structures / FIFO</span>
+
+    <h2>Queue Visualizer</h2>
+
+    <p>
+        Explore the First In, First Out principle through
+        Enqueue, Dequeue, Peek Front, and Clear operations.
+    </p>
+
+    <div class="card-footer">
+        <span class="tech-label">FIFO · Queue</span>
+        <a href="/queue" class="btn">
+            Open Queue Lab <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</article>
+
+<!-- DEQUE VISUALIZER -->
+<article class="card work-card deque-card">
+    <div class="card-top">
+        <div class="project-icon">
+            <i class="fa-solid fa-arrows-left-right"></i>
+        </div>
+        <span class="project-number">09 / 09</span>
+    </div>
+
+    <span class="project-category">Data Structures / Double-Ended Queue</span>
+
+    <h2>Deque Visualizer</h2>
+
+    <p>
+        Explore a Double-Ended Queue by adding and removing
+        elements from both the front and rear.
+    </p>
+
+    <div class="card-footer">
+        <span class="tech-label">Front · Rear · Deque</span>
+        <a href="/deque" class="btn">
+            Open Deque Lab <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</article>
+
+        </section>
+
+        <footer class="works-footer">

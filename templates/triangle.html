@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area of Triangle</title>
+    <title>Area of a Triangle | My Portfolio</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/triangle.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-
     <nav class="navbar">
-
         <a href="/" class="logo">
             <img
-                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                src="{{ url_for('static', filename='images/profile.png') }}"
                 alt="My Profile Picture"
                 class="nav-profile"
             >
@@ -28,68 +29,112 @@
             <a href="/works">Works</a>
             <a href="/contact">Contact</a>
         </div>
-
     </nav>
 
-    <div class="container">
+    <main class="calculator-page">
+        <a href="/works" class="back-link">
+            <span aria-hidden="true">←</span> Back to Programming Works
+        </a>
 
-        <div class="form-box">
+        <div class="calculator-layout">
+            <section class="calculator-card">
+                <div class="eyebrow">Geometry / Calculator 02</div>
 
-            <h1>Area of a Triangle</h1>
+                <h1>Area of a <span>Triangle</span></h1>
 
-            <p>
-                Enter the base and height of the triangle
-                to calculate its area.
-            </p>
+                <p class="description">
+                    Enter the base and height of your triangle to calculate
+                    its area using a simple mathematical formula.
+                </p>
 
-            <form method="POST">
+                <div class="formula-chip">
+                    <strong>A = ½bh</strong>
+                    <span>Area = base × height ÷ 2</span>
+                </div>
 
-                <label for="base">Base</label>
+                <form method="POST" action="{{ url_for('works.triangle') }}">
+                    <div class="form-group">
+                        <label for="base">Base</label>
 
-                <input
-                    type="number"
-                    id="base"
-                    name="base"
-                    step="any"
-                    min="0"
-                    placeholder="Enter base"
-                    required
-                >
+                        <div class="input-wrap">
+                            <input
+                                type="number"
+                                id="base"
+                                name="base"
+                                step="any"
+                                min="0"
+                                placeholder="Enter base"
+                                value="{{ request.form.get('base', '') }}"
+                                required
+                            >
+                            <span class="input-suffix">units</span>
+                        </div>
+                    </div>
 
-                <label for="height">Height</label>
+                    <div class="form-group">
+                        <label for="height">Height</label>
 
-                <input
-                    type="number"
-                    id="height"
-                    name="height"
-                    step="any"
-                    min="0"
-                    placeholder="Enter height"
-                    required
-                >
+                        <div class="input-wrap">
+                            <input
+                                type="number"
+                                id="height"
+                                name="height"
+                                step="any"
+                                min="0"
+                                placeholder="Enter height"
+                                value="{{ request.form.get('height', '') }}"
+                                required
+                            >
+                            <span class="input-suffix">units</span>
+                        </div>
+                    </div>
 
-                <button type="submit" class="btn">
-                    Calculate Area
-                </button>
+                    <button type="submit" class="calculate-btn">
+                        Calculate Area <span aria-hidden="true">→</span>
+                    </button>
+                </form>
 
-            </form>
+                {% if result is not none %}
+                    <div class="result-box" role="status" aria-live="polite">
+                        <span class="result-label">Calculated Area</span>
+                        <div class="result-value">{{ "%.4f"|format(result) }}</div>
+                        <div class="result-note">square units</div>
+                    </div>
+                {% endif %}
 
-            {% if result is not none %}
-            <div class="result">
-                <strong>Result:</strong>
-                The area of the triangle is {{ result }}
-            </div>
-            {% endif %}
+                {% if error %}
+                    <div class="error-box" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+            </section>
 
-            {% if error %}
-            <div class="error">
-                {{ error }}
-            </div>
-            {% endif %}
+            <aside class="visual-card">
+                <div class="visual-label">Triangle geometry</div>
 
+                <div class="triangle-visual">
+                    <svg viewBox="0 0 240 205" role="img" aria-label="Triangle showing its base and height">
+                        <polygon class="triangle-fill" points="120,20 25,175 215,175" />
+                        <line class="triangle-height" x1="120" y1="20" x2="120" y2="175" />
+                        <line class="triangle-base" x1="25" y1="175" x2="215" y2="175" />
+                        <path d="M120 163 L132 163 L132 175" fill="none" stroke="#f1b3bf" stroke-width="1.5" />
+                        <text class="triangle-label" x="135" y="95">h</text>
+                        <text class="triangle-label" x="120" y="197" text-anchor="middle">b (base)</text>
+                    </svg>
+                </div>
+
+                <h2>Discover the Area</h2>
+
+                <p>
+                    The area of a triangle is half the product of its base
+                    and perpendicular height. Enter your measurements to begin.
+                </p>
+            </aside>
         </div>
 
-    </div>
-
+        <footer class="page-footer">
+            © 2026 My Portfolio · Python &amp; Flask
+        </footer>
+    </main>
 </body>
 </html>

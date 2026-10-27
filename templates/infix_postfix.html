@@ -1,19 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infix to Postfix Converter</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Infix to Postfix | My Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/infix_postfix.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ 
 </head>
+
 <body>
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="logo">
+        <a href="/" class="logo">
             <img
-                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                src="{{ url_for('static', filename='images/profile.png') }}"
                 alt="My Profile Picture"
                 class="nav-profile"
             >
@@ -21,25 +26,27 @@
         </a>
 
         <div class="nav-links">
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('profile') }}">Profile</a>
-            <a href="{{ url_for('works') }}">Works</a>
-            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="/">Home</a>
+            <a href="{{ url_for('main.profile') }}">Profile</a>
+            <a href="{{ url_for('works.works') }}">Works</a>
+            <a href="{{ url_for('contact.contact') }}">Contact</a>
         </div>
     </nav>
 
-    <!-- INFIX TO POSTFIX CONVERTER -->
+    <!-- INFIX TO POSTFIX -->
     <main class="container infix-page">
         <section class="infix-panel">
 
-            <div class="infix-heading">
-                <span class="infix-tag">DATA STRUCTURES & ALGORITHMS</span>
+            <header class="infix-heading">
+                <span class="infix-tag">DATA STRUCTURES &amp; ALGORITHMS</span>
+
                 <h1>Infix <span>to Postfix</span></h1>
+
                 <p>
                     Convert mathematical expressions using a Stack
                     implemented with a Linked List.
                 </p>
-            </div>
+            </header>
 
             <form method="POST" class="infix-form">
                 <label for="expression">Your Infix Expression</label>
@@ -49,61 +56,67 @@
                     id="expression"
                     name="expression"
                     placeholder="Example: (A + B) * C"
-                    value="{{ expression }}"
+                    value="{{ expression or '' }}"
+                    autocomplete="off"
                     required
                 >
 
-                <button type="submit" class="btn">
+                <button type="submit">
                     Convert Expression ↗
                 </button>
             </form>
 
-            
-{% if result is not none %}
-<section class="infix-result">
-    <span class="infix-tag">CONVERSION RESULT</span>
-    <h2>Postfix Expression</h2>
-    <div class="postfix-output">{{ result }}</div>
-</section>
+            {% if result is not none %}
+            <section class="infix-result" aria-live="polite">
+                <span class="infix-tag">CONVERSION RESULT</span>
+                <h2>Postfix Expression</h2>
 
-<section class="steps-panel">
-    <h2>Conversion Steps</h2>
-    <p>Follow how each token moves through the Stack and output.</p>
+                <div class="postfix-output">{{ result }}</div>
+            </section>
 
-    <div class="steps-table-wrapper">
-        <table class="steps-table">
-            <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>Token</th>
-                    <th>Action</th>
-                    <th>Stack (Top First)</th>
-                    <th>Postfix Output</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for step in steps %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ step.token }}</td>
-                    <td>{{ step.action }}</td>
-                    <td>{{ step.stack }}</td>
-                    <td>{{ step.output }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-{% endif %}
+            <section class="steps-panel">
+                <h2>Conversion Steps</h2>
 
+                <p>
+                    Follow how each token moves through the Stack
+                    and the postfix output.
+                </p>
 
-            {% if error %}
-            <p class="infix-error">{{ error }}</p>
+                <div class="steps-table-wrapper">
+                    <table class="steps-table">
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Token</th>
+                                <th>Action</th>
+                                <th>Stack (Top First)</th>
+                                <th>Postfix Output</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for step in steps %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ step.token }}</td>
+                                <td>{{ step.action }}</td>
+                                <td>{{ step.stack }}</td>
+                                <td>{{ step.output }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             {% endif %}
 
-            <a href="{{ url_for('works') }}" class="infix-back">
-                ← Back to Works
+            {% if error %}
+            <p class="infix-error" role="alert">{{ error }}</p>
+            {% endif %}
+
+            <a href="{{ url_for('works.works') }}" class="infix-back">
+                <span aria-hidden="true">←</span>
+                Back to Programming Works
             </a>
 
         </section>
@@ -111,4 +124,3 @@
 
 </body>
 </html>
-

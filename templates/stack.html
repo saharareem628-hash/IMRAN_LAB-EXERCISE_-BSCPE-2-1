@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stack Lab | My Portfolio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stack.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+          rel="stylesheet">
+
+   
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="{{ url_for('main.index') }}" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="{{ url_for('main.profile') }}">Profile</a>
+            <a href="{{ url_for('works.works') }}">Works</a>
+            <a href="{{ url_for('contact.contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <!-- STACK LAB HEADER -->
+    <main>
+        <div class="eyebrow">
+            <span class="status-dot"></span>
+            Data Structures / Interactive Lab
+        </div>
+
+        <h1>STACK <span>LAB.</span></h1>
+
+        <p class="intro">
+            Explore the Stack data structure through an interactive visualizer.
+            Push values, pop the top element, peek at the latest value, and watch
+            the stack update after every operation.
+        </p>
+
+        <!-- STACK STATISTICS -->
+        <section class="stats">
+            <div class="stat">
+                <div class="stat-label">Stack Size</div>
+                <div class="stat-value" id="stackSize">{{ items|length }}</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Top Element</div>
+                <div class="stat-value red" id="topElement" style="font-size:18px">
+                    {{ items[-1] if items else 'EMPTY' }}
+                </div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Last Operation</div>
+                <div class="stat-value" id="lastOperation" style="font-size:17px">
+                    {{ last_operation|default('READY') }}
+                </div>
+            </div>
+        </section>
+
+        <!-- STACK WORKSPACE -->
+        <section class="workspace">
+
+            <!-- VISUALIZER -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Stack Visualizer</h2>
+                        <div class="subheading">Your stack, updated live</div>
+                    </div>
+                    <span class="tag">LIFO</span>
+                </div>
+
+                <div class="stack-stage">
+                    <div class="top-label">↑ TOP OF STACK</div>
+
+                    <div class="stack-items" id="stackItems">
+                        {% if items %}
+                            {% for item in items %}
+                                <div class="stack-block {% if loop.last %}top{% endif %}">
+                                    <span class="block-index">
+                                        NODE {{ "%02d"|format(loop.index) }}
+                                    </span>
+                                    <span class="block-data">{{ item }}</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="empty-state">
+                                Your stack is empty.<br>
+                                Push a value to get started.
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="base-line"></div>
+                </div>
+            </div>
+
+            <!-- OPERATIONS -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Operations Console</h2>
+                        <div class="subheading">Control the stack</div>
+                    </div>
+                    <span class="tag">READY</span>
+                </div>
+
+                <form method="POST" action="{{ url_for('stack.stack') }}">
+                    <label class="field-label" for="stackValue">
+                        Value to Push
+                    </label>
+
+                    <input
+                        id="stackValue"
+                        name="value"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Enter a value..."
+                        autocomplete="off"
+                    >
+
+                    <div class="buttons">
+                        <button type="submit" class="primary"
+                                name="action" value="push">
+                            ＋ Push
+                        </button>
+
+                        <button type="submit" name="action" value="peek"
+                                formnovalidate>
+                            ◉ Peek
+                        </button>
+
+                        <button type="submit" name="action" value="pop"
+                                formnovalidate>
+                            − Pop
+                        </button>
+
+                        <button type="submit" class="danger"
+                                name="action" value="clear"
+                                formnovalidate>
+                            ✕ Clear Stack
+                        </button>
+                    </div>
+                </form>
+
+                <div class="message" aria-live="polite">
+                    {{ message or 'Ready to perform a stack operation.' }}
+                </div>
+
+                <div class="rule">
+                    <strong>LIFO — Last In, First Out</strong><br>
+                    The last value pushed onto the stack is the first value
+                    removed. Peek checks the top value without removing it.
+                </div>
+            </div>
+        </section>
+
+        <!-- OPERATION HISTORY -->
+        <section class="panel log-panel">
+            <div class="panel-heading">
+                <div>
+                    <h2>Operation History</h2>
+                    <div class="subheading">
+                        Most recent operation result
+                    </div>
+                </div>
+                <span class="tag">SESSION</span>
+            </div>
+
+            <div class="log-list">
+                <div class="log-row">
+                    <span class="log-action">LATEST</span>
+                    <span class="log-value">
+                        {{ message or 'No operation performed yet.' }}
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACK TO WORKS -->
+        <a href="{{ url_for('works.works') }}" class="back-link">
+            ← Back to Works
+        </a>
+    </main>
+
+    <footer>
+        STACK LAB · DATA STRUCTURES &amp; ALGORITHMS · MY PORTFOLIO
+    </footer>
+</body>
+</html>

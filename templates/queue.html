@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Queue | My Portfolio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/queue.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img
+                src="{{ url_for('static', filename='images/profile.png') }}"
+                alt="My Profile Picture"
+                class="nav-profile"
+            >
+            <span>My Portfolio</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/works" class="active">Works</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="queue-page">
+
+        <header class="queue-heading">
+            <p class="queue-eyebrow">DATA STRUCTURE / PYTHON</p>
+            <h1>Queue <span>Visualizer.</span></h1>
+            <p>
+                Explore how a queue works using the
+                First In, First Out (FIFO) principle.
+            </p>
+        </header>
+
+        <section class="queue-layout">
+
+            <div class="queue-card">
+                <p class="section-label">QUEUE OPERATIONS</p>
+
+                <form method="POST" class="queue-form">
+                    <label for="queue-value">Enter a value</label>
+                    <input
+                        type="text"
+                        id="queue-value"
+                        name="value"
+                        placeholder="Type a value..."
+                    >
+
+                    <button type="submit" name="action" value="enqueue">
+                        Enqueue <span>→</span>
+                    </button>
+                </form>
+
+                <div class="queue-actions">
+                    <form method="POST">
+                        <button type="submit" name="action" value="dequeue"
+                                class="secondary-btn">
+                            Dequeue
+                        </button>
+                    </form>
+
+                    <form method="POST">
+                        <button type="submit" name="action" value="peek"
+                                class="secondary-btn">
+                            Peek Front
+                        </button>
+                    </form>
+
+                    <form method="POST"
+                          onsubmit="return confirm('Clear the entire queue?');">
+                        <button type="submit" name="action" value="clear"
+                                class="clear-btn">
+                            Clear Queue
+                        </button>
+                    </form>
+                </div>
+
+                {% if message %}
+                    <div class="queue-message {% if success %}success{% else %}error{% endif %}"
+                         role="status" aria-live="polite">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="queue-card queue-display">
+                <p class="section-label">QUEUE DATA</p>
+                <h2>Current Elements</h2>
+                <p class="queue-hint">
+                    Front items leave first. New items join at the rear.
+                </p>
+
+                {% if items %}
+                    <div class="queue-track">
+                        {% for item in items %}
+                            <div class="queue-item">
+                                <span>{{ item }}</span>
+                                {% if loop.first %}
+                                    <small>FRONT</small>
+                                {% endif %}
+                                {% if loop.last %}
+                                    <small>REAR</small>
+                                {% endif %}
+                            </div>
+                            {% if not loop.last %}
+                                <span class="queue-arrow">←</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="queue-empty">
+                        <span>∅</span>
+                        <p>Your queue is empty.</p>
+                        <small>Enqueue a value to get started.</small>
+                    </div>
+                {% endif %}
+
+                <div class="queue-count">
+                    Total elements: <strong>{{ items|length }}</strong>
+                </div>
+            </div>
+
+        </section>
+
+        <a href="/works" class="queue-back">← Back to Works</a>
+
+        <footer class="queue-footer">
+            © 2026 My Portfolio · Python &amp; Flask
+        </footer>
+
+    </main>
+
+</body>
+</html>
